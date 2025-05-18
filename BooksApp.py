@@ -1,14 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, abort, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 import secrets
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
-import chardet
-import ebooklib
-from ebooklib import epub
-import fitz
-import mobi
-from docx import Document
+from functools import wraps
+import logging
+
 #   from BooksApp import app, db
 #   app.app_context().push()
 #   db.create_all()
