@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Описание книги
+{% endblock %}
+
+{% block body %}
+<div class="header_book ms-3">
+    <h1 class="title_book">{{ book.Title }}</h1>
+    <div class="text-end me-2"style="margin-top: 10px;">
+        {% if admin %}
+        <a href="/book_adm/{{book.id}}/del" class="button-custom me-2" onclick="showAlert()">Удалить</a>
+        <a href="/book_adm/{{book.id}}/edit" class="button-custom me-2">Редактировать</a>
+        <script>
+          function showAlert(){
+            alert("Вы действительно хотите удалить?");
+          }
+        </script>
+        {%endif%}
+        <a href="/Main" class="button-custom me-2">Назад к каталогу</a>  
+    </div>
+</div>
+ <div class="item ms-3">
+     <img class = "cover__img" src="{{cover_url}}">
+    <h3>Автор: {{ book.Author }}</h3>
+    <p>{{ book.About }}</p> 
+    <a href="{{ url_for('read_book', book_id=book.id) }}" class="button-custom me-2">Читать</a><br>
+
+
+ </div>
+<footer class="text text-white mt-4">
+  <div class="container">
+    <div class="about-us d-flex flex-wrap align-items-center justify-content-between"> 
+      <div>
+        <h1>Контакты</h1>
+        <p>Телефон: +7999-999-99-99</p>
+        <p>Почта: appbooks@gmail.com</p>
+      </div>
+      <div>
+        <h1>Реквизиты</h1>
+        <a href="/Main"><img class="header__img" src="{{ url_for('static', filename='image/telegram_theme.png') }}" alt="Телеграм"></a>
+        <a href="/Main"><img class="header__img" src="{{ url_for('static', filename='image/vk_theme.png') }}" alt="ВК"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+
+
+
